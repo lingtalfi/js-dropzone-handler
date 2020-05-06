@@ -1,10 +1,7 @@
-/**
- * This depends on jquery.
- */
 class DropZoneHandler {
 
     constructor(options) {
-        this.options = jQuery.extend({
+        this.options = Object.assign({
             container: null,
             cssClass: "dropzone-hover",
             onDrop: function (files) {
@@ -22,10 +19,10 @@ class DropZoneHandler {
 
         const cssClass = this.options.cssClass;
         const onDrop = this.options.onDrop;
-        const jDropZone = this.container;
+        const elDropZone = this.container;
 
 
-        if (jDropZone.length) {
+        if (elDropZone.length) {
             function dragstart(e) {
                 e.stopPropagation();
                 e.preventDefault();
@@ -45,8 +42,8 @@ class DropZoneHandler {
             function dragover(e) {
                 e.stopPropagation();
                 e.preventDefault();
-                if (false === jDropZone.hasClass(cssClass)) {
-                    jDropZone.addClass(cssClass);
+                if (false === elDropZone.classList.contains(cssClass)) {
+                    elDropZone.classList.add(cssClass);
                 }
 
                 // https://stackoverflow.com/questions/10119514/html5-drag-drop-change-icon-cursor-while-dragging
@@ -56,13 +53,13 @@ class DropZoneHandler {
             function dragleave(e) {
                 e.stopPropagation();
                 e.preventDefault();
-                jDropZone.removeClass(cssClass);
+                elDropZone.classList.remove(cssClass);
             }
 
             function drop(e) {
                 e.stopPropagation();
                 e.preventDefault();
-                jDropZone.removeClass(cssClass);
+                elDropZone.classList.remove(cssClass);
 
 
                 const dt = e.dataTransfer;
@@ -75,11 +72,11 @@ class DropZoneHandler {
             }
 
 
-            jDropZone[0].addEventListener("dragstart", dragstart, false);
-            jDropZone[0].addEventListener("dragenter", dragenter, false);
-            jDropZone[0].addEventListener("dragleave", dragleave, false);
-            jDropZone[0].addEventListener("dragover", dragover, false);
-            jDropZone[0].addEventListener("drop", drop, false);
+            elDropZone.addEventListener("dragstart", dragstart, false);
+            elDropZone.addEventListener("dragenter", dragenter, false);
+            elDropZone.addEventListener("dragleave", dragleave, false);
+            elDropZone.addEventListener("dragover", dragover, false);
+            elDropZone.addEventListener("drop", drop, false);
         }
 
 
