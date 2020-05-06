@@ -38,6 +38,10 @@ dropZoneHandler.start();
 History log
 =============
 
+- 1.1.1 -- 2020-05-06
+    
+    - fix old jquery dependency not removed
+
 - 1.1.0 -- 2020-05-06
     
     - removed jquery dependency
